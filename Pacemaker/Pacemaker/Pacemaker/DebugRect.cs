@@ -12,6 +12,7 @@ namespace Pacemaker
     class DebugRect : Microsoft.Xna.Framework.DrawableGameComponent
     {
         RectangeGraphic RectangeGraphic;
+        Point Offset;
 
         public enum DebugType
         {
@@ -21,19 +22,20 @@ namespace Pacemaker
             Trigger,    // Yellow
         }
 
-        public DebugRect(Point _Center, int _Width, int _Height, DebugType _Type, Game _Game)
+        public DebugRect(Point _Center, Point _Offset, int _Width, int _Height, DebugType _Type, Game _Game)
             : base(_Game)
         {
+            Offset = _Offset;
             Color Color = Color.HotPink;
             switch (_Type)
             {
-                case DebugType.View:    { Color = Color.Blue;  } break;
+                case DebugType.View: { Color = Color.Blue; } break;
                 case DebugType.Physics: { Color = Color.White; } break;
                 case DebugType.Hostile: { Color = Color.Red; } break;
                 case DebugType.Trigger: { Color = Color.Yellow; } break;
             }
 
-            RectangeGraphic = new RectangeGraphic(new Rectangle(_Center.X, _Center.Y, _Width, _Height), 3, Color, _Game);
+            RectangeGraphic = new RectangeGraphic(new Rectangle(_Center.X - Offset.X, _Center.Y - Offset.Y, _Width, _Height), 3, Color, _Game);
         }
 
         public override void Initialize()
@@ -55,6 +57,9 @@ namespace Pacemaker
 
         public void Move(Point _Point)
         {
+            _Point.X -= Offset.X;
+            _Point.Y -= Offset.Y;
+
             RectangeGraphic.Move(_Point);
         }
 

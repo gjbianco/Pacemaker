@@ -22,12 +22,14 @@ namespace Pacemaker
             : base(game)
         {
             Position = new Point();
-            View = new DebugRect(Position, 50, 50, DebugRect.DebugType.View, game);
-            Physics = new DebugRect(Position, 30, 40, DebugRect.DebugType.Physics, game);
+            View = new DebugRect(Position, new Point(25,25), 50, 50, DebugRect.DebugType.View, game);
+            Physics = new DebugRect(Position,new Point(15, 20), 30, 40, DebugRect.DebugType.Physics, game);
         }
 
         public override void Initialize()
         {
+            View.Initialize();
+            Physics.Initialize();
             base.Initialize();
         }
 
@@ -37,6 +39,14 @@ namespace Pacemaker
             Physics.Move(Position);
 
             base.Update(gameTime);
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            View.Draw(gameTime);
+            Physics.Draw(gameTime);
+
+            base.Draw(gameTime);
         }
     }
 }
