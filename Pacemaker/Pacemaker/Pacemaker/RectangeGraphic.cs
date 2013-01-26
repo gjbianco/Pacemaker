@@ -20,31 +20,25 @@ namespace Pacemaker
         Game Game;
         Texture2D Pixel;
 
-        Rectangle Rectangle;
+        public Rectangle Rectangle;
         public Color Color;
         public int BorderThinkness;
 
-        public RectangeGraphic(int _Width, int _Height, Game _Game)
+        public RectangeGraphic(Rectangle _Rectangle, int _BorderThinkness, Color _Color, Game _Game)
             : base(_Game)
         {
+            BorderThinkness = _BorderThinkness;
+            Color = _Color;
+            Rectangle = _Rectangle;
             Game = _Game;
-
-            Rectangle.X = 0;
-            Rectangle.Y = 0;
-            Rectangle.Width = _Width;
-            Rectangle.Height = _Height;
-
-            Color = Color.White;
-            BorderThinkness = 5;
         }
 
         protected override void LoadContent()
         {
-            base.LoadContent();
-
             Pixel = new Texture2D(Game.GraphicsDevice, 1, 1, false, SurfaceFormat.Color);
             Pixel.SetData(new[] { Color.White });
 
+            base.LoadContent();
         }
 
         public override void Initialize()
@@ -52,6 +46,12 @@ namespace Pacemaker
             LoadContent();
 
             base.Initialize();
+        }
+
+        public void Move(Point _Point)
+        {
+            Rectangle.X = _Point.X;
+            Rectangle.Y = _Point.Y;
         }
 
         public override void Update(GameTime gameTime)

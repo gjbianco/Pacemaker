@@ -18,12 +18,17 @@ namespace Pacemaker
     {
         public GraphicsDeviceManager Graphics;
         public SpriteBatch SpriteBatch;
-        RectangeGraphic RectangeGraphic;
+        public ObjectManager ObjectManager;
+
+        Player PlayerOne;
 
         public Game()
         {
             Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+            ObjectManager = new Pacemaker.ObjectManager(this);
+
+            PlayerOne = new Player(this);
         }
 
         /// <summary>
@@ -35,8 +40,8 @@ namespace Pacemaker
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            RectangeGraphic = new RectangeGraphic(25, 25, this);
-            RectangeGraphic.Initialize();
+            ObjectManager.Initialize();
+            ObjectManager.Register(PlayerOne);
 
             base.Initialize();
         }
@@ -74,6 +79,7 @@ namespace Pacemaker
                 this.Exit();
 
             // TODO: Add your update logic here
+            ObjectManager.Update(gameTime);
 
             base.Update(gameTime);
         }
@@ -88,7 +94,7 @@ namespace Pacemaker
 
             SpriteBatch.Begin();
             // TODO: Add your drawing code here
-            RectangeGraphic.Draw(gameTime);
+            ObjectManager.Draw(gameTime);
 
             SpriteBatch.End();
 
