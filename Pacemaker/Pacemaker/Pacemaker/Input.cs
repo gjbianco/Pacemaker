@@ -13,7 +13,8 @@ namespace Pacemaker
         private MouseState PreviousMouseState;
         private GamePadState PreviousGamePadState;
 
-        public Input(Game _Game) : base(_Game)
+        public Input(Game _Game)
+            : base(_Game)
         {
 
         }
@@ -22,9 +23,9 @@ namespace Pacemaker
         {
             base.Initialize();
 
-            PreviousKeyboardState   = Keyboard.GetState();
-            PreviousMouseState      = Mouse.GetState();
-            PreviousGamePadState    = GamePad.GetState(PlayerIndex.One);
+            PreviousKeyboardState = Keyboard.GetState();
+            PreviousMouseState = Mouse.GetState();
+            PreviousGamePadState = GamePad.GetState(PlayerIndex.One);
         }
 
         public override void Update(Microsoft.Xna.Framework.GameTime gameTime)
@@ -32,9 +33,9 @@ namespace Pacemaker
             base.Update(gameTime);
 
             // Get Current States
-            KeyboardState   CurrentKeyboardState    = Keyboard.GetState();
-            MouseState      CurrentMouseState       = Mouse.GetState();
-            GamePadState    CurrentGamePadState     = GamePad.GetState(PlayerIndex.One);
+            KeyboardState CurrentKeyboardState = Keyboard.GetState();
+            MouseState CurrentMouseState = Mouse.GetState();
+            GamePadState CurrentGamePadState = GamePad.GetState(PlayerIndex.One);
 
             // [KeyBoard]   Caps Lock       / Enter
             // [KeyBoard]   Left Shift      / Right Shift
@@ -45,14 +46,14 @@ namespace Pacemaker
             // [X360]       Left Tigger     / Right Tigger
             // [X360]       Left Shoulder   / Right Shoulder
 
-            if ((CurrentKeyboardState.IsKeyDown(Keys.CapsLock)          && PreviousKeyboardState.IsKeyUp(Keys.CapsLock))
-                || (CurrentKeyboardState.IsKeyDown(Keys.LeftShift)      && PreviousKeyboardState.IsKeyUp(Keys.LeftShift))
-                || (CurrentKeyboardState.IsKeyDown(Keys.LeftControl)    && PreviousKeyboardState.IsKeyUp(Keys.LeftControl))
-                || (CurrentKeyboardState.IsKeyDown(Keys.LeftAlt)        && PreviousKeyboardState.IsKeyUp(Keys.LeftAlt))
-                || (CurrentKeyboardState.IsKeyDown(Keys.Left)           && PreviousKeyboardState.IsKeyUp(Keys.Left))
-                
+            if ((CurrentKeyboardState.IsKeyDown(Keys.CapsLock) && PreviousKeyboardState.IsKeyUp(Keys.CapsLock))
+                || (CurrentKeyboardState.IsKeyDown(Keys.LeftShift) && PreviousKeyboardState.IsKeyUp(Keys.LeftShift))
+                || (CurrentKeyboardState.IsKeyDown(Keys.LeftControl) && PreviousKeyboardState.IsKeyUp(Keys.LeftControl))
+                || (CurrentKeyboardState.IsKeyDown(Keys.LeftAlt) && PreviousKeyboardState.IsKeyUp(Keys.LeftAlt))
+                || (CurrentKeyboardState.IsKeyDown(Keys.Left) && PreviousKeyboardState.IsKeyUp(Keys.Left))
+
                 || (CurrentMouseState.LeftButton == ButtonState.Pressed && PreviousMouseState.LeftButton == ButtonState.Released)
-                
+
                 || (CurrentGamePadState.IsConnected && (CurrentGamePadState.IsButtonDown(Buttons.LeftTrigger) && PreviousGamePadState.IsButtonUp(Buttons.LeftTrigger)))
                 || (CurrentGamePadState.IsConnected && (CurrentGamePadState.IsButtonDown(Buttons.LeftShoulder) && PreviousGamePadState.IsButtonUp(Buttons.LeftShoulder)))
                 )
@@ -60,12 +61,12 @@ namespace Pacemaker
                 // TODO:: Event Left Pressed
             }
 
-            if ((CurrentKeyboardState.IsKeyDown(Keys.Enter)             && PreviousKeyboardState.IsKeyUp(Keys.Enter))
-                || (CurrentKeyboardState.IsKeyDown(Keys.RightShift)     && PreviousKeyboardState.IsKeyUp(Keys.RightShift))
-                || (CurrentKeyboardState.IsKeyDown(Keys.RightControl)   && PreviousKeyboardState.IsKeyUp(Keys.RightControl))
-                || (CurrentKeyboardState.IsKeyDown(Keys.RightAlt)       && PreviousKeyboardState.IsKeyUp(Keys.RightAlt))
-                || (CurrentKeyboardState.IsKeyDown(Keys.Right)             && PreviousKeyboardState.IsKeyUp(Keys.Right))
-                
+            if ((CurrentKeyboardState.IsKeyDown(Keys.Enter) && PreviousKeyboardState.IsKeyUp(Keys.Enter))
+                || (CurrentKeyboardState.IsKeyDown(Keys.RightShift) && PreviousKeyboardState.IsKeyUp(Keys.RightShift))
+                || (CurrentKeyboardState.IsKeyDown(Keys.RightControl) && PreviousKeyboardState.IsKeyUp(Keys.RightControl))
+                || (CurrentKeyboardState.IsKeyDown(Keys.RightAlt) && PreviousKeyboardState.IsKeyUp(Keys.RightAlt))
+                || (CurrentKeyboardState.IsKeyDown(Keys.Right) && PreviousKeyboardState.IsKeyUp(Keys.Right))
+
                 || (CurrentMouseState.RightButton == ButtonState.Pressed && PreviousMouseState.RightButton == ButtonState.Released)
 
                 || (CurrentGamePadState.IsConnected && (CurrentGamePadState.IsButtonDown(Buttons.RightTrigger) && PreviousGamePadState.IsButtonUp(Buttons.RightTrigger)))
@@ -75,12 +76,12 @@ namespace Pacemaker
                 // TODO:: Event Right Pressed
             }
 
-            if ((CurrentKeyboardState.IsKeyUp(Keys.CapsLock)            && PreviousKeyboardState.IsKeyDown(Keys.CapsLock))
-                || (CurrentKeyboardState.IsKeyUp(Keys.LeftShift)        && PreviousKeyboardState.IsKeyDown(Keys.LeftShift))
-                || (CurrentKeyboardState.IsKeyUp(Keys.LeftControl)      && PreviousKeyboardState.IsKeyDown(Keys.LeftControl))
-                || (CurrentKeyboardState.IsKeyUp(Keys.LeftAlt)          && PreviousKeyboardState.IsKeyDown(Keys.LeftAlt))
-                || (CurrentKeyboardState.IsKeyUp(Keys.Left)             && PreviousKeyboardState.IsKeyDown(Keys.Left))
-                
+            if ((CurrentKeyboardState.IsKeyUp(Keys.CapsLock) && PreviousKeyboardState.IsKeyDown(Keys.CapsLock))
+                || (CurrentKeyboardState.IsKeyUp(Keys.LeftShift) && PreviousKeyboardState.IsKeyDown(Keys.LeftShift))
+                || (CurrentKeyboardState.IsKeyUp(Keys.LeftControl) && PreviousKeyboardState.IsKeyDown(Keys.LeftControl))
+                || (CurrentKeyboardState.IsKeyUp(Keys.LeftAlt) && PreviousKeyboardState.IsKeyDown(Keys.LeftAlt))
+                || (CurrentKeyboardState.IsKeyUp(Keys.Left) && PreviousKeyboardState.IsKeyDown(Keys.Left))
+
                 || (CurrentMouseState.LeftButton == ButtonState.Released && PreviousMouseState.LeftButton == ButtonState.Pressed)
 
                 || (CurrentGamePadState.IsConnected && (CurrentGamePadState.IsButtonUp(Buttons.LeftTrigger) && PreviousGamePadState.IsButtonDown(Buttons.LeftTrigger)))
@@ -90,12 +91,12 @@ namespace Pacemaker
                 // TODO:: Event Left Release
             }
 
-            if ((CurrentKeyboardState.IsKeyUp(Keys.Enter)               && PreviousKeyboardState.IsKeyDown(Keys.Enter))
-                || (CurrentKeyboardState.IsKeyUp(Keys.RightShift)       && PreviousKeyboardState.IsKeyDown(Keys.RightShift))
-                || (CurrentKeyboardState.IsKeyUp(Keys.RightControl)     && PreviousKeyboardState.IsKeyDown(Keys.RightControl))
-                || (CurrentKeyboardState.IsKeyUp(Keys.RightAlt)         && PreviousKeyboardState.IsKeyDown(Keys.RightAlt))
-                || (CurrentKeyboardState.IsKeyUp(Keys.Right)            && PreviousKeyboardState.IsKeyDown(Keys.Right))
-                
+            if ((CurrentKeyboardState.IsKeyUp(Keys.Enter) && PreviousKeyboardState.IsKeyDown(Keys.Enter))
+                || (CurrentKeyboardState.IsKeyUp(Keys.RightShift) && PreviousKeyboardState.IsKeyDown(Keys.RightShift))
+                || (CurrentKeyboardState.IsKeyUp(Keys.RightControl) && PreviousKeyboardState.IsKeyDown(Keys.RightControl))
+                || (CurrentKeyboardState.IsKeyUp(Keys.RightAlt) && PreviousKeyboardState.IsKeyDown(Keys.RightAlt))
+                || (CurrentKeyboardState.IsKeyUp(Keys.Right) && PreviousKeyboardState.IsKeyDown(Keys.Right))
+
                 || (CurrentMouseState.RightButton == ButtonState.Released && PreviousMouseState.RightButton == ButtonState.Pressed)
 
                 || (CurrentGamePadState.IsConnected && (CurrentGamePadState.IsButtonUp(Buttons.RightTrigger) && PreviousGamePadState.IsButtonDown(Buttons.RightTrigger)))
