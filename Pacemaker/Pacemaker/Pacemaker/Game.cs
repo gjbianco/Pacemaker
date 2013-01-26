@@ -16,12 +16,13 @@ namespace Pacemaker
     /// </summary>
     public class Game : Microsoft.Xna.Framework.Game
     {
-        GraphicsDeviceManager graphics;
-        SpriteBatch spriteBatch;
+        public GraphicsDeviceManager Graphics;
+        public SpriteBatch SpriteBatch;
+        RectangeGraphic RectangeGraphic;
 
         public Game()
         {
-            graphics = new GraphicsDeviceManager(this);
+            Graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
         }
 
@@ -34,6 +35,8 @@ namespace Pacemaker
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
+            RectangeGraphic = new RectangeGraphic(25, 25, this);
+            RectangeGraphic.Initialize();
 
             base.Initialize();
         }
@@ -45,7 +48,7 @@ namespace Pacemaker
         protected override void LoadContent()
         {
             // Create a new SpriteBatch, which can be used to draw textures.
-            spriteBatch = new SpriteBatch(GraphicsDevice);
+            SpriteBatch = new SpriteBatch(GraphicsDevice);
 
             // TODO: use this.Content to load your game content here
         }
@@ -81,9 +84,13 @@ namespace Pacemaker
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Gray);
 
+            SpriteBatch.Begin();
             // TODO: Add your drawing code here
+            RectangeGraphic.Draw(gameTime);
+
+            SpriteBatch.End();
 
             base.Draw(gameTime);
         }

@@ -5,7 +5,12 @@ using System.Text;
 
 namespace Pacemaker
 {
-    class Player
+    class Player : Microsoft.Xna.Framework.GameComponent
     {
+        public Player(Game _Game)
+            : base(_Game)
+        {
+
+        }
     }
 }
